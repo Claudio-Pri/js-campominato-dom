@@ -59,8 +59,6 @@ main {
 
 #grid-container>* {
     text-align: center;
-    width: calc(100% / 10);
-    height: 100px;
     border: 1px solid aqua;
     background-color: azure;
     color: black;
@@ -83,5 +81,23 @@ main {
     font-weight: bold;
     padding: 3px 5px;
 
+
+}
+
+#grid-container>.easy {
+    height: 100px;
+    width: 100px;
+
+}
+
+#grid-container>.medium {
+    height: calc(1000px / 9);
+    width: calc(1000px / 9);
+
+}
+
+#grid-container>.hard {
+    height: calc(1000px / 7);
+    width: calc(1000px / 7);
 
 }
