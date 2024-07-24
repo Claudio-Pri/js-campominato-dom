@@ -45,6 +45,13 @@ generateButton.addEventListener('click', function () {
             this.classList.toggle('selected');
             console.log('cella n°', newCell.innerHTML);
             const cellNumber = parseInt(this.innerText);
+            // console.log(cellNumber);
+            if (bombs.includes(cellNumber)) {
+                this.classList.add('bomb');
+            }
+            else {
+                this.classList.add('not-bomb');
+            }
         });
         gridContainer.append(newCell);
         // console.log(newCell, typeof newCell);

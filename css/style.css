@@ -54,7 +54,7 @@ main {
 
 #grid-container>.selected {
     background-color: lightcoral;
-    border: 1px solid brown;
+
 }
 
 #grid-container>* {
@@ -99,5 +99,17 @@ main {
 #grid-container>.cell-49 {
     height: calc(1000px / 7);
     width: calc(1000px / 7);
+
+}
+
+#grid-container>.bomb {
+    background-color: brown;
+
+
+}
+
+#grid-container>.not-bomb {
+    background-color: lightgreen;
+
 
 }
