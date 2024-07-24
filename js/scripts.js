@@ -6,34 +6,31 @@
 const gridContainer = document.getElementById('grid-container');
 // console.log(gridContainer, typeof gridContainer);
 const generateButton = document.getElementById('generate-button');
+
+
 // event listener sul button per generare la griglia
-generateButton.addEventListener('click', () => {
+generateButton.addEventListener('click', function () {
     // selezione difficoltà
     const diffSelector = document.getElementById('level');
     console.log('Difficoltà: ', diffSelector.value);
-    // gridcontainer.innerhtml=''; per resettare la board 
-    gridContainer.innerHTML = ('');
+
     // livelli
     let cellsNumber = parseInt(diffSelector.value);
+    //bombe
+    let bombs = [];
+    // for (let i = 0; i < 16; i++) {
+    while (bombs.length < 16) {
+        const randomNumber = generateRandom(1, cellsNumber);
+        console.log('numero a cso: ', randomNumber);
+        if (!bombs.includes(randomNumber)) {
+            bombs.push(randomNumber);
 
-    // switch (diffSelector.value) {
-    //     case '2':
-    //         cellsNumber = 81;
-    //         break;
-    //     case '3':
-    //         cellsNumber = 49;
-    //         break;
-    //     default:
-    //         cellsNumber = 100;
-    //         break;
-    // };
+        };
+    };
+    console.log('bombs: ', bombs);
 
-    // if (diffSelector.value == '2') {
-    //     cellsNumber = 81;
-    // }
-    // else if (diffSelector.value == '3') {
-    //     cellsNumber = 49;
-    // }
+    // gridcontainer.innerhtml=''; per resettare la board 
+    gridContainer.innerHTML = ('');
     // genero l'elemento
     for (let i = 0; i < cellsNumber; i++) {
         let newCell = document.createElement('div');
@@ -41,40 +38,23 @@ generateButton.addEventListener('click', () => {
         // ridimensionamento celle in base al livello
         // opzione 3 (modificate classi css)
         newCell.classList.add('cell-' + cellsNumber);
-        // opzione 1:
-        // if (cellsNumber == 100) {
-        //     newCell.classList.add('easy');
-        // }
-        // else if (cellsNumber == 81) {
-        //     newCell.classList.add('medium');
-        // }
-        // else if (cellsNumber == 49) {
-        //     newCell.classList.add('hard');
-        // }
-        // opzione 2:
-        // switch (cellsNumber) {
-        //     case 81:
-        //         newCell.classList.add('medium');
-        //         break;
-        //     case 49:
-        //         newCell.classList.add('hard');
-        //         break;
-        //     default:
-        //         newCell.classList.add('easy');
-        //         break;
-        // };
+
         //aggiungo event listener sulla cella
         newCell.addEventListener('click', function () {
             //perchè This funziona con - function () - ma non con - () => -?
             this.classList.toggle('selected');
             console.log('cella n°', newCell.innerHTML);
-
+            const cellNumber = parseInt(this.innerText);
         });
         gridContainer.append(newCell);
-        console.log(newCell, typeof newCell);
+        // console.log(newCell, typeof newCell);
     };
 });
 
+//correzione
 //===== Functions =====
+function generateRandom(min, max) {
+    return Math.floor(Math.random() * (max - min + 1)) + min;
 
+};
 
