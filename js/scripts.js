@@ -41,17 +41,25 @@ generateButton.addEventListener('click', function () {
 
         //aggiungo event listener sulla cella
         newCell.addEventListener('click', function () {
-            //perchè This funziona con - function () - ma non con - () => -?
-            this.classList.toggle('selected');
-            console.log('cella n°', newCell.innerHTML);
-            const cellNumber = parseInt(this.innerText);
-            // console.log(cellNumber);
-            if (bombs.includes(cellNumber)) {
-                this.classList.add('bomb');
+            const bombCells = document.querySelectorAll('.bomb');
+            const notBombCells = document.querySelectorAll('.not-bomb');
+            if (bombCells.length == 0 && notBombCells.length < cellsNumber - bombs.length) {
+                //perchè This funziona con - function () - ma non con - () => -?
+                this.classList.toggle('selected');
+                console.log('cella n°', newCell.innerHTML);
+                const cellNumber = parseInt(this.innerText);
+                // console.log(cellNumber);
+                if (bombs.includes(cellNumber)) {
+                    this.classList.add('bomb');
+                }
+                else {
+                    this.classList.add('not-bomb');
+                }
             }
             else {
-                this.classList.add('not-bomb');
+                alert('Partita finita');
             }
+
         });
         gridContainer.append(newCell);
         // console.log(newCell, typeof newCell);
